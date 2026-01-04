@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HealthTrack – SDG 3 Prototype</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* APP CONTAINER */
+.app {
+    width: 390px;
+    height: 700px;
+    background: #ffffff;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+.header {
+    background: linear-gradient(135deg, #43cea2, #185a9d);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.header p {
+    margin: 5px 0 0;
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+/* CONTENT */
+.content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* SECTIONS */
+.section {
+    display: none;
+}
+
+#dashboard {
+    display: block;
+}
+
+.section-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #185a9d;
+}
+
+/* INPUTS */
+label {
+    font-size: 13px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    margin-bottom: 14px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #43cea2, #185a9d);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* CARD */
+.card {
+    background: #f4f7fb;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    border-top: 1px solid #ddd;
+}
+
+.nav-item {
+    flex: 1;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 12px;
+    color: #555;
+    cursor: pointer;
+}
+
+.nav-item.active {
+    color: #185a9d;
+    font-weight: 600;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>HealthTrack</h1>
+        <p>Smart Preventive Care System</p>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+        <!-- LOGIN -->
+        <div class="section" id="login">
+            <div class="section-title">Login</div>
+
+            <label>Email</label>
+            <input type="email" placeholder="Enter your email">
+
+            <label>Password</label>
+            <input type="password" placeholder="Enter your password">
+
+            <button>Login</button>
+        </div>
+
+        <!-- DASHBOARD -->
+        <div class="section" id="dashboard">
+            <div class="section-title">Dashboard</div>
+
+            <div class="card">🩺 Log Daily Health Symptoms</div>
+            <div class="card">📅 Book Doctor Appointment</div>
+            <div class="card">⏰ Health Reminders</div>
+        </div>
+
+        <!-- SYMPTOM TRACKER -->
+        <div class="section" id="health">
+            <div class="section-title">Symptom Tracker</div>
+
+            <div class="card">
+                ✔ Fever <br>
+                ✔ Headache <br>
+                ✔ Fatigue
+            </div>
+        </div>
+
+        <!-- APPOINTMENT -->
+        <div class="section" id="appointments">
+            <div class="section-title">Appointment Booking</div>
+
+            <div class="card">
+                Select Doctor <br>
+                Choose Date & Time <br>
+                Confirm Appointment
+            </div>
+        </div>
+
+    </div>
+
+    <!-- NAVIGATION -->
+    <div class="navbar">
+        <div class="nav-item active" onclick="showSection('dashboard')">Home</div>
+        <div class="nav-item" onclick="showSection('health')">Health</div>
+        <div class="nav-item" onclick="showSection('appointments')">Appointments</div>
+        <div class="nav-item" onclick="showSection('login')">Profile</div>
+    </div>
+
+</div>
+
+<script>
+function showSection(sectionId) {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(sec => sec.style.display = 'none');
+
+    document.getElementById(sectionId).style.display = 'block';
+
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => item.classList.remove('active'));
+
+    event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>
